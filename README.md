@@ -1,3 +1,7 @@
+Live demo : https://rekrutacjarekrutacja23.refy.pl/form.html
+
+Baza danych do testów lokalnych:
+
 --
 -- Database: `kandydat`
 --
