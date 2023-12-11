@@ -96,18 +96,22 @@
                 var c = document.createElement("input"); //input element, date
                 c.setAttribute('placeholder', "Od:");
                 c.setAttribute('id', "od");
-                c.setAttribute('type', "date");
+                c.setAttribute('type', "text");
+                c.setAttribute('onfocus', "(this.type='date')")
                 c.setAttribute('name', "od[]");
                 c.setAttribute('class', "form-control");
+
+
 
                 var d = document.createElement("input"); //input element, date
                 d.setAttribute('placeholder', "Do:");
                 d.setAttribute('id', "do");
-                d.setAttribute('type', "date");
+                d.setAttribute('type', "text");
+                d.setAttribute('onfocus', "(this.type='date')")
                 d.setAttribute('name', "do[]");
                 d.setAttribute('class', "form-control ");
 
-                var g = document.createElement("br");
+                var g = document.createElement("hr");
 
                 a.appendChild(b);
                 a.appendChild(c);
