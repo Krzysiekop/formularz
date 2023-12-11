@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz zgłoszeń kandydatów</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<div class="main">
+
+ <h1>Formularz zgłoszeniowy</h1>
+<form action="form.php" method="post" id="form" enctype="multipart/form-data">
+   <div>
+
+       <label for="first_name"> Imię<span class="required">*</span>:</label>
+       <input type="text" name="first_name"  id="first_name" maxlength="50" required><br>
+    Nazwisko<span class="required">*</span>: <input type="text" name="surname" maxlength="50" required><br>
+    Data urodzenia<span class="required">*</span>: <input type="date" name="birthDate" required><br>
+    E-mail<span class="required">*</span>: <input type="email" name="email" maxlength="100" required><br>
+    Wykształcenie<span class="required">*</span>:
+       <select name="school">
+           <option value="podstawowe">Podstawowe</option>
+           <option value="srednie">Średnie</option>
+           <option value="wyższe">Wyższe</option>
+       </select> <br>
+    List motywacyjny<span class="required">*</span>: <input type="file" name="motivation" accept=".jpg, .pdf, .doc" required><br>
+    CV<span class="required">*</span>: <input type="file" name="cv" accept=".jpg, .pdf, .doc" required><br>
+       <div id="cv2"></div>
+       <input id="nextCV" type="button" value="Kolejny załącznik">
+    <h4>Wybierz ilość odbytych staży</h4>
+
+    <select id="numberOfInterns" name="numberOfInterns">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+   </div>
+    <div id="intern">
+        <!--           automatycznie generowane formularze-->
+    </div>
+    <input type="submit">
+
+</form>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $('#nextCV').on('click', function () {
+        var a = document.getElementById('cv2');
+
+        var b = document.createElement("input"); //input element, text
+        b.setAttribute('placeholder', "CV2");
+        b.setAttribute('type', "file");
+        b.setAttribute('name', "cv2");
+        b.setAttribute('class', "form-control");
+        a.appendChild(b);
+        var c = document.createElement("label"); //input element, text
+        c.setAttribute('for', "cv2");
+        c.append("CV2: ");
+
+        a.appendChild(c);
+        a.appendChild(b);
+
+        $('#nextCV').hide();
+
+    })
+</script>
+<script type="text/javascript">
+
+    $('#numberOfInterns').on('change', function () {
+        let numberOfInternships = $(this).children("option:selected").val();
+
+        if ($(this).val() != '0') {
+            //     var a = document.getElementById('form');
+                 var a = document.getElementById('intern');
+
+            for (p = 1; p <= numberOfInternships; p++) {
+
+                var b = document.createElement("input"); //input element, text
+                b.setAttribute('placeholder', "Nazwa firmy");
+                b.setAttribute('type', "text");
+                b.setAttribute('name', "nazwa[]");
+                b.setAttribute('class', "form-control");
+
+                var c = document.createElement("input"); //input element, date
+                c.setAttribute('placeholder', "Od:");
+                c.setAttribute('id', "od");
+                c.setAttribute('type', "date");
+                c.setAttribute('name', "od[]");
+                c.setAttribute('class', "form-control");
+
+                var d = document.createElement("input"); //input element, date
+                d.setAttribute('placeholder', "Do:");
+                d.setAttribute('id', "do");
+                d.setAttribute('type', "date");
+                d.setAttribute('name', "do[]");
+                d.setAttribute('class', "form-control ");
+
+                var g = document.createElement("br");
+
+                a.appendChild(b);
+                a.appendChild(c);
+                a.appendChild(d);
+                a.appendChild(g);
+                
+            }
+
+        }
+        if (numberOfInternships > 0) {
+            $('numberOfInterns').hide();
+        }
+
+    }).trigger('change');
+
+</script>
